@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Highest Point Total</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #highestScore 
+        {
+            font-size: 2em;
+            color: #CE1141;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Class Leaderboard</h1>
+    <p>The highest point total is:</p>
+    <div id="highestScore">Loading...</div>
+
+    <script>
+        // Function to fetch scores from the backend and update the highest score
+        async function fetchAndUpdateScores() {
+            try {
+                // Fetch the data from your backend API (replace with your actual API endpoint)
+                const response = await fetch('https://your-backend-api.com/api/scores');
+                const scores = await response.json();
+
+                // Find the highest score and update the display
+                const highestScore = Math.max(...scores);
+                document.getElementById('highestScore').textContent = highestScore;
+            } catch (error) {
+                console.error('Error fetching scores:', error);
+                document.getElementById('highestScore').textContent = 'Error fetching scores';
+            }
+        }
+
+        // Fetch and update scores when the page loads
+        fetchAndUpdateScores();
+
+        // Optionally, you could set an interval to refresh the scores periodically
+        // setInterval(fetchAndUpdateScores, 60000); // Refresh every 60 seconds
+
+    </script>
+
+</body>
+</html>
